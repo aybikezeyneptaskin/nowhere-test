@@ -4,28 +4,51 @@ namespace Assets.Scripts.Managers
 {
     public class GameManager : MonoBehaviour
     {
-        public static GameManager Instance;
+        public static GameManager Instance{get; private set;}
 
-        [SerializeField] private AudioSource _spawnSound;
+        //[SerializeField] private AudioSource _spawnSound;
+        [SerializeField] AudioClip _spawnSound;
+        [SerializeField] AudioClip _removeSound;
+        AudioSource _audioSource;
 
         private void Awake()
         {
             //TODO: What's a better way to implement this singleton?
-            var gameManagers = FindObjectsOfType<GameManager>();
 
-            if (gameManagers.Length > 1)
+            //if no instance
+            if (Instance == null)
             {
-                Destroy(gameObject);
+                Instance = this;
             }
-            else
+            //if there are instances other than this
+            else if(Instance != this)
             {
-                Instance = gameManagers[0];
+                Destroy(this);
             }
+
+            _audioSource = GetComponent<AudioSource>();
         }
 
         public void PlaySpawnSound()
         {
-            _spawnSound.Play();
+            _audioSource.PlayOneShot(_spawnSound);
+        }
+
+        public void PlayRemoveSound()
+        {
+            _audioSource.PlayOneShot(_removeSound);
+        }
+
+        private void OnEnable() 
+        {   
+            SpawnManager.IsInstantiated += PlaySpawnSound;
+            SpawnManager.IsRemoved += PlayRemoveSound;
+        }
+        
+        private void OnDisable() 
+        {
+            SpawnManager.IsInstantiated -= PlaySpawnSound;
+            SpawnManager.IsRemoved -= PlayRemoveSound;
         }
     }
 }

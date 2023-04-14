@@ -153,7 +153,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 068558ef3914fe64cb25d076ced72e5c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _spawnSound: {fileID: 377150847}
+  _spawnSound: {fileID: 8300000, guid: 075ff0a96b9b300428b30aaabd973992, type: 3}
+  _removeSound: {fileID: 8300000, guid: a09b6cd93440f074191054ed9c2518fa, type: 3}
 --- !u!4 &377150846
 Transform:
   m_ObjectHideFlags: 0
@@ -335,7 +336,7 @@ Camera:
   m_Enabled: 1
   serializedVersion: 2
   m_ClearFlags: 2
-  m_BackGroundColor: {r: 0.19215687, g: 0.3019608, b: 0.4745098, a: 0}
+  m_BackGroundColor: {r: 0.8583083, g: 0.8407796, b: 0.8867924, a: 0}
   m_projectionMatrixMode: 1
   m_GateFitMode: 2
   m_FOVAxisMode: 0
@@ -524,6 +525,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _ballPrefab: {fileID: 6070535086427302677, guid: 5ff37185eec304c4283a5f245024b61b, type: 3}
+  SpawnEvent:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!4 &630740710
 Transform:
   m_ObjectHideFlags: 0
